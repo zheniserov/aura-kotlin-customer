@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.message_card.view.*
 class MessagesAdapter(private val messages: ArrayList<Message>) : RecyclerView.Adapter<MessagesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessagesViewHolder {
-        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.product_card, parent, false)
+        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.message_card, parent, false)
         return MessagesViewHolder(inflater)
     }
 

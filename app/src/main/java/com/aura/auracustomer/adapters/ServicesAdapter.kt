@@ -9,12 +9,13 @@ import com.aura.auracustomer.activities.ServiceActivity
 import com.aura.auracustomer.models.Service
 import com.example.aura.R
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.product_card.view.*
 import kotlinx.android.synthetic.main.service_card.view.*
 
 class ServicesAdapter(private val services: ArrayList<Service>) : RecyclerView.Adapter<ServicesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServicesViewHolder {
-        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.product_card, parent, false)
+        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.service_card, parent, false)
         return ServicesViewHolder(inflater)
     }
 
@@ -24,8 +25,8 @@ class ServicesAdapter(private val services: ArrayList<Service>) : RecyclerView.A
         holder.view.date_of_service_card.text = service.dateOpen
         holder.view.description_of_service_card.text = service.description
         holder.view.amount_of_service_card.text = service.paymentDue.toString()
-        holder.view.arrears_of_serivce_card.text = service.description
-        holder.view.service_card_pay_btn.visibility = if (service.description.isNotEmpty()) View.VISIBLE else View.INVISIBLE
+        holder.view.arrears_of_serivce_card.text = service.paid.toString()
+        holder.view.service_card_pay_btn.visibility = if (service.paid != 0.0) View.VISIBLE else View.INVISIBLE
         holder.serviceId = service.id
         Picasso.get()
             .load(image)

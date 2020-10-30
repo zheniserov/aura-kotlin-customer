@@ -6,8 +6,8 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ServicesApi {
-    @GET("/service/{contractId}")
+    @GET("/service/customer/{customerId}")
     fun getAllServices(
-        @Path("contractId") contractId: Long
+        @Path("customerId") customerId: Long
     ): Call<ArrayList<Service>>
 }

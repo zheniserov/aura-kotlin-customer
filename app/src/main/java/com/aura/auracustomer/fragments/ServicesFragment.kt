@@ -12,6 +12,7 @@ import com.aura.auracustomer.adapters.ServicesAdapter
 import com.aura.auracustomer.models.Service
 import com.aura.auracustomer.presenters.IServicesPresenter
 import com.aura.auracustomer.presenters.ServicesPresenter
+import com.aura.auracustomer.utils.Constants
 import com.aura.auracustomer.views.IServicesView
 import kotlinx.android.synthetic.main.fragment_services.*
 
@@ -45,7 +46,7 @@ class ServicesFragment : Fragment(), IServicesView {
         super.onActivityCreated(savedInstanceState)
         (activity as MainActivity).supportActionBar?.title = "Услуги"
         servicePresenter = ServicesPresenter(this)
-        servicePresenter.getAll(437031) // "Спроси у Улана"
+        servicePresenter.getAll(Constants.CUSTOMER_ID)
     }
 
 

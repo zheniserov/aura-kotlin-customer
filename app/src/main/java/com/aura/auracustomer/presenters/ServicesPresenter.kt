@@ -9,22 +9,24 @@ import retrofit2.Callback
 import retrofit2.Response
 
 interface IServicesPresenter {
-    fun getAll(contractId: Long)
+    fun getAll(customerId: Long)
 }
 
 class ServicesPresenter(val iServicesView: IServicesView): IServicesPresenter {
 
-    override fun getAll(contractId: Long) {
+    override fun getAll(customerId: Long) {
         val apiService = ServiceBuilder.buildService(ServicesApi::class.java)
-        val callSignIn = apiService.getAllServices(contractId)
+        val callSignIn = apiService.getAllServices(customerId)
 
         callSignIn.enqueue(object : Callback<ArrayList<Service>> {
             override fun onFailure(call: Call<ArrayList<Service>>, t: Throwable) {
+                println(t.message)
                 iServicesView.onError(t.message.toString())
             }
 
             override fun onResponse(call: Call<ArrayList<Service>>, response: Response<ArrayList<Service>>) {
                 if (response.isSuccessful) {
+                    println(response.body()!!)
                     iServicesView.onSuccess(response.body()!!)
                 }
             }
