@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="3dp"
+    android:layout_margin="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_effect_filled">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/service_card_pay_btn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Оплатить"
+            android:textColor="@color/colorPrimary"
+            app:backgroundTint="@color/colorBg"
+            app:icon="@drawable/ic_outline_payment_24"
+            app:iconGravity="textStart"
+            app:iconPadding="10dp"
+            app:iconTint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/arrears_of_serivce_card" />
+
+        <ImageView
+            android:id="@+id/service_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/date_of_service_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:text="12.12.2000"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintStart_toEndOf="@+id/service_image"
+            app:layout_constraintTop_toTopOf="@+id/service_image" />
+
+        <TextView
+            android:id="@+id/description_of_service_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:text="Примечание: awdawidaiwjfionewoinfioweniognweiongiorniogneroingero"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/date_of_service_card"
+            app:layout_constraintTop_toBottomOf="@+id/date_of_service_card" />
+
+        <TextView
+            android:id="@+id/arrears_of_serivce_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Задолженность: adoawno"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintEnd_toEndOf="@+id/description_of_service_card"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/description_of_service_card"
+            app:layout_constraintTop_toBottomOf="@+id/amount_of_service_card" />
+
+        <TextView
+            android:id="@+id/amount_of_service_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="1550 тенге"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintStart_toStartOf="@+id/description_of_service_card"
+            app:layout_constraintTop_toBottomOf="@+id/description_of_service_card" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
