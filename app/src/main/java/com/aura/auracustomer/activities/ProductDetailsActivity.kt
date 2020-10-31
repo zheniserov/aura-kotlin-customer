@@ -57,6 +57,7 @@ class ProductDetailsActivity : AppCompatActivity(), IProductsView {
         product_details_tabLayout.setupWithViewPager(product_details_viewPager)
 
         product_details_progress_bar.visibility = View.GONE
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
