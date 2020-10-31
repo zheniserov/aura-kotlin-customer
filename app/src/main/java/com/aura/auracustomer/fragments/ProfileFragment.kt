@@ -7,29 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.aura.R
 import com.aura.auracustomer.activities.MainActivity
+import com.aura.auracustomer.models.Customer
+import com.aura.auracustomer.presenters.CustomerPresenter
+import com.aura.auracustomer.presenters.ICustomerPresenter
+import com.aura.auracustomer.utils.Constants
+import com.aura.auracustomer.views.ICustomerView
+import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.product_card.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+class ProfileFragment : Fragment(), ICustomerView {
+    private lateinit var customerPresenter: ICustomerPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,25 +29,28 @@ class ProfileFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (activity as MainActivity).supportActionBar?.title = null
+
+        customerPresenter = CustomerPresenter(this)
+        customer_data.visibility = View.INVISIBLE
+        customerPresenter.getData(Constants.CUSTOMER_ID)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onSuccess(data: Customer) {
+        customer_data.visibility = View.VISIBLE
+        profile_progress_bar.visibility = View.INVISIBLE
+        profile_subtitle.text = "ULA, MNE NUJEN COUNTRY NAME"
+        if (data.fizYur == 1) {
+            product_title.text = data.name
+            profile_textView3.text = "Бухгалтер"
+            profile_textView4.text = "Директор"
+            textView19.text = data.accountant
+            textView20.text = data.director
+        } else {
+//            product_title.text = data.firstname + data.middlename + data.lastname
+            profile_textView3.text = "ИИН/БИН"
+            profile_textView4.text = "Дата рождения"
+            textView19.text = data.iinBin
+            textView20.text = data.birthday
+        }
     }
 }

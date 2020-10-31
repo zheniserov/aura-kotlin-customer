@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_payments -> setFragment(PaymentsFragment())
             R.id.nav_message -> setFragment(MessageFragment())
             R.id.nav_bonuses -> setFragment(BonusesFragment())
-            R.id.nav_comments -> setFragment(CommentsFragment())
+            R.id.nav_comments -> setFragment(FeedbackFragment())
             R.id.nav_settings -> setFragment(SettingsFragment())
             R.id.nav_defrayal -> setFragment(DefrayalFragment())
             R.id.nav_services -> setFragment(ServicesFragment())

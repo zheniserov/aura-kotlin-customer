@@ -13,26 +13,15 @@ import com.aura.auracustomer.models.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_product.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val ARG_PARAM1 = "product"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProductFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProductFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var product: Product? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            product = it.getSerializable(ARG_PARAM1) as Product
         }
     }
 
@@ -46,14 +35,12 @@ class ProductFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val intent = (activity as ProductDetailsActivity).intent
-        val received: Product = intent.getSerializableExtra("data") as Product
-
-        fragment_product_title.text = received.matnrName
-        fragment_product_recommender.text = "${received.firstName} ${received.lastName} ${received.middleName}"
-        fragment_product_purchaseDate.text = received.contractDate
-        fragment_product_serviceDate.text = received.lastServiceDate
-        fragment_product_payment.text = received.price.toString()
+        val image = "https://www.rain-del-queen.co.za/images/homePage/roboclean.png"
+        fragment_product_title.text = product!!.matnrName
+        fragment_product_recommender.text = "${product!!.firstName} ${product!!.lastName} ${product!!.middleName}"
+        fragment_product_purchaseDate.text = product!!.contractDate
+        fragment_product_serviceDate.text = product!!.lastServiceDate
+        fragment_product_payment.text = product!!.price.toString()
         fragment_product_paymentTill.text = "DENIODNEION"
 
         fragment_product_paymentschedule_btn.setOnClickListener {
@@ -62,26 +49,16 @@ class ProductFragment : Fragment() {
         }
 
         Picasso.get()
-            .load(received.image)
+            .load(image)
             .into(fragment_product_image)
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProductFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(product: Product) =
             ProductFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putSerializable(ARG_PARAM1, product)
                 }
             }
     }

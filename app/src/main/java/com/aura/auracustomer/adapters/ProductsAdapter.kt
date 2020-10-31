@@ -37,18 +37,18 @@ class ProductAdapter(private val products: ArrayList<Product>) : RecyclerView.Ad
             holder.view.product_btn.visibility = View.GONE
             holder.view.payed.visibility = View.VISIBLE
         }
-
-        holder.productId = product.id
+        holder.contractId = product.contractId
     }
 
     override fun getItemCount(): Int = products.size
 }
 
-class ProductViewHolder(val view: View, var productId: Long? = null) : RecyclerView.ViewHolder(view) {
+class ProductViewHolder(val view: View, var contractId: Long? = null) : RecyclerView.ViewHolder(view) {
     init {
         view.setOnClickListener {
             val intent = Intent(view.context, ProductDetailsActivity::class.java)
-            intent.putExtra("productId", productId)
+            println(contractId)
+            intent.putExtra("contractId", contractId)
             view.context.startActivity(intent)
         }
     }

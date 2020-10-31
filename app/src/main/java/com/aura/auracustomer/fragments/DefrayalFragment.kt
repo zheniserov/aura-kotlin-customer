@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aura.R
 import com.aura.auracustomer.activities.ConfirmPayActivity
 import com.aura.auracustomer.activities.MainActivity
+import com.aura.auracustomer.adapters.DefrayalAdapter
+import com.aura.auracustomer.models.Defrayal
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_defrayal.*
 
@@ -21,7 +24,10 @@ class DefrayalFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private val image = "https://www.rain-del-queen.co.za/images/homePage/roboclean.png"
+    private val defrayals = arrayListOf(
+        Defrayal("Roboclean S-Plus", 30000.toDouble(), "тенге"),
+        Defrayal("Услуга", 40000.toDouble(), "тенге")
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,13 +49,8 @@ class DefrayalFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         (activity as MainActivity).supportActionBar?.title = "Оплата"
 
-        to_defrayal_btn.setOnClickListener {
-            val intent = Intent(this.context, ConfirmPayActivity::class.java)
-            startActivity(intent)
-        }
-        Picasso.get()
-            .load(image)
-            .into(defrayal_image)
+        defrayal_recycler_view.layoutManager = LinearLayoutManager(this.requireContext())
+        defrayal_recycler_view.adapter = DefrayalAdapter(defrayals)
 
     }
 

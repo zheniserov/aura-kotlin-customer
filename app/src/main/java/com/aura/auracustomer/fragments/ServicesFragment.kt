@@ -61,9 +61,10 @@ class ServicesFragment : Fragment(), IServicesView {
             }
     }
 
-    override fun onSuccess(services: ArrayList<Service>) {
+    override fun onSuccessServices(services: ArrayList<Service>) {
         services_recycler_view.layoutManager = LinearLayoutManager(this.requireContext())
         services_recycler_view.adapter = ServicesAdapter(services)
+        services_progress_bar.visibility = View.GONE
     }
 
     override fun onError(message: String) {

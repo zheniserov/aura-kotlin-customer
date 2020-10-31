@@ -11,44 +11,22 @@ import com.example.aura.R
 import com.aura.auracustomer.activities.CalendarViewActivity
 import com.example.aura.adapterItems.AllPaymentsItem
 import com.aura.auracustomer.models.Payment
+import com.aura.auracustomer.presenters.IPaymentsPresenter
+import com.aura.auracustomer.presenters.PaymentsPresenter
+import com.aura.auracustomer.views.IPaymentsView
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.fragment_all_payments.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val ARG_PARAM1 = "payments"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AllPaymentsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AllPaymentsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    private val allPaymentsAdapter = GroupAdapter<GroupieViewHolder>()
-        .apply {
-            add(AllPaymentsItem(Payment("Roboclean", 30000, "Дата: 2020-04-10")))
-            add(AllPaymentsItem(Payment("Услуга", 30000, "Дата: 2020-04-10", "Примечание: awdafre")))
-            add(AllPaymentsItem(Payment("Roboclean", 30000, "Дата: 2020-04-10")))
-            add(AllPaymentsItem(Payment("Услуга", 30000, "Дата: 2020-04-10", "Примечание: awdafre")))
-            add(AllPaymentsItem(Payment("Roboclean", 30000, "Дата: 2020-04-10")))
-            add(AllPaymentsItem(Payment("Услуга", 30000, "Дата: 2020-04-10", "Примечание: awdafre")))
-            add(AllPaymentsItem(Payment("Roboclean", 30000, "Дата: 2020-04-10")))
-            add(AllPaymentsItem(Payment("Услуга", 30000, "Дата: 2020-04-10", "Примечание: awdafre")))
-            add(AllPaymentsItem(Payment("Roboclean", 30000, "Дата: 2020-04-10")))
-            add(AllPaymentsItem(Payment("Услуга", 30000, "Дата: 2020-04-10", "Примечание: awdafre")))
-        }
+    private var payments: ArrayList<Payment>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            payments = it.getSerializable(ARG_PARAM1) as ArrayList<Payment>
         }
     }
 
@@ -63,9 +41,8 @@ class AllPaymentsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        all_payments_recycler_view.layoutManager = LinearLayoutManager(this.context)
-        all_payments_recycler_view.adapter = allPaymentsAdapter
-
+//        all_payments_recycler_view.layoutManager = LinearLayoutManager(this.requireContext())
+//        all_payments_recycler_view.adapter =
 
         calendar_view.setOnClickListener {
             val intent = Intent(this.context, CalendarViewActivity::class.java)
@@ -74,21 +51,11 @@ class AllPaymentsFragment : Fragment() {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AllPaymentsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(payments: ArrayList<Payment>) =
             AllPaymentsFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putSerializable(ARG_PARAM1, payments)
                 }
             }
     }

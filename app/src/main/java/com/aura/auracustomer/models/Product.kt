@@ -3,7 +3,6 @@ package com.aura.auracustomer.models
 import java.io.Serializable
 
 data class Product (
-    val id: Long,
     val image: String,
     val contractId: Long,
     val tovarSerial: String,
@@ -21,4 +20,3 @@ data class Product (
     val lastServiceDate: String,
     val paymentScheduleNum: Int
 ) : Serializable
-

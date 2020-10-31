@@ -68,12 +68,9 @@ class ProductsFragment : Fragment(), IProductsView {
             }
     }
 
-    override fun onSuccess(products: ArrayList<Product>) {
+    override fun onSuccessProducts(products: ArrayList<Product>) {
         products_recycler_view.layoutManager = LinearLayoutManager(this.context)
         products_recycler_view.adapter = ProductAdapter(products)
-    }
-
-    override fun onError(message: String) {
-        println("Error: $message")
+        products_progress_bar.visibility = View.GONE
     }
 }

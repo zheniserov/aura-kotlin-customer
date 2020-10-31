@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.aura.R
 import com.aura.auracustomer.activities.MainActivity
+import com.aura.auracustomer.models.Payment
+import com.aura.auracustomer.presenters.IPaymentsPresenter
+import com.aura.auracustomer.presenters.PaymentsPresenter
 import com.aura.auracustomer.utils.TabLayoutFragmentAdapter
+import com.aura.auracustomer.views.IPaymentsView
 import kotlinx.android.synthetic.main.fragment_payments.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -20,10 +24,12 @@ private const val ARG_PARAM2 = "param2"
  * Use the [PaymentsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PaymentsFragment : Fragment() {
+class PaymentsFragment : Fragment(), IPaymentsView {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private lateinit var paymentsPresenter: IPaymentsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,13 +52,17 @@ class PaymentsFragment : Fragment() {
         (activity as MainActivity).supportActionBar?.title = "Платежи"
 
 
+        paymentsPresenter = PaymentsPresenter(this)
+    }
+
+    override fun onSuccessPayments(payments: ArrayList<Payment>) {
         val titles = ArrayList<String>()
         val fragments = ArrayList<Fragment>()
 
         titles.add("Все платежи")
         titles.add("История")
 
-        fragments.add(AllPaymentsFragment())
+//        fragments.add(AllPaymentsFragment.newInstance())
         fragments.add(PaymentsHistoryFragment())
 
         val fragmentAdapter = TabLayoutFragmentAdapter(childFragmentManager, fragments, titles)

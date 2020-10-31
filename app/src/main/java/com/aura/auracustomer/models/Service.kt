@@ -8,5 +8,16 @@ data class Service (
     val dateOpen: String,
     val paymentDue: Double,
     val description: String,
-    val paid: Double? = null
+    val paid: Double? = null,
+    val contractId: Long,
+    val firstName: String,
+    val lastName: String,
+    val masterPhone: String,
+    val matnrName: String,
+    val middleName: String,
+    val paymentScheduleNum: Long,
+    val sacked: Int,
+    val sumTotal: Double,
+    val tovarSerial: String,
+    val waers: String
 ) : Serializable

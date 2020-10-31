@@ -98,7 +98,7 @@ class HomeFragment : Fragment() {
         fragment_home_grid_recyclerview.adapter = homeProductAdapter
 
         onClickListener(ProductsFragment(), products_btn, R.id.nav_products)
-        onClickListener(CommentsFragment(), comments_btn, R.id.nav_comments)
+        onClickListener(FeedbackFragment(), comments_btn, R.id.nav_comments)
         onClickListener(PaymentsFragment(), payment_btn, R.id.nav_payments)
         onClickListener(MessageFragment(), messages_btn, R.id.nav_message)
         onClickListener(BonusesFragment(), bonuses_btn, R.id.nav_bonuses)

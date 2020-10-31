@@ -9,7 +9,6 @@ import com.aura.auracustomer.activities.ServiceActivity
 import com.aura.auracustomer.models.Service
 import com.example.aura.R
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.product_card.view.*
 import kotlinx.android.synthetic.main.service_card.view.*
 
 class ServicesAdapter(private val services: ArrayList<Service>) : RecyclerView.Adapter<ServicesViewHolder>() {
@@ -24,8 +23,8 @@ class ServicesAdapter(private val services: ArrayList<Service>) : RecyclerView.A
         val service: Service = services[position]
         holder.view.date_of_service_card.text = service.dateOpen
         holder.view.description_of_service_card.text = service.description
-        holder.view.amount_of_service_card.text = service.paymentDue.toString()
-        holder.view.arrears_of_serivce_card.text = service.paid.toString()
+        holder.view.amount_of_service_card.text = service.paymentDue.toString() + " " + service.waers
+        holder.view.arrears_of_serivce_card.text = "Задолженность: ${service.paid.toString()}"
         holder.view.service_card_pay_btn.visibility = if (service.paid != 0.0) View.VISIBLE else View.INVISIBLE
         holder.serviceId = service.id
         Picasso.get()
