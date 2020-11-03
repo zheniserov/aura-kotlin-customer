@@ -19,5 +19,8 @@ data class Service (
     val sacked: Int,
     val sumTotal: Double,
     val tovarSerial: String,
-    val waers: String
+    val waers: String,
+    val masterFio: String,
+    val awkey: Long,
+    val bukrs: String
 ) : Serializable

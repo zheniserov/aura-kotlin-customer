@@ -4,8 +4,7 @@ import android.widget.Toast
 import com.aura.auracustomer.activities.ServiceActivity
 import com.aura.auracustomer.models.Service
 
-interface IServicesView {
+interface IServicesView : BaseView {
     fun onSuccessServices(services: ArrayList<Service>) {}
-    fun onError(message: String) {}
     fun onSuccessService(service: Service) {}
 }

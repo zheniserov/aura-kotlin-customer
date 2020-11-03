@@ -1,10 +1,11 @@
 package com.aura.auracustomer.models
 
 data class PaymentSchedule (
-    val paymentTypeId: Long,
+    val paymentTypeId: Int,
     val paymentDate: String,
-    val paymentSum: Long,
-    val paid: Long,
-    val paymentScheduleNum: Long,
-    val matnrName: String
+    val sum2: Double,
+    val paid: Double,
+    val paymentScheduleNum: Int,
+    val matnrName: String,
+    val serviceDescription: String
 )

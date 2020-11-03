@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.WindowManager
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
+import com.aura.auracustomer.adapters.CalendarAdapter
 import com.example.aura.R
 import com.example.aura.adapterItems.PaymentCalendarItem
 import com.aura.auracustomer.models.PaymentCalendar
@@ -18,15 +19,7 @@ import kotlinx.android.synthetic.main.activity_calendar_view.*
 
 class CalendarViewActivity : AppCompatActivity() {
     private lateinit var gridLayoutManager: GridLayoutManager
-    private val image = "https://www.formulauyuta.ru/images/product_images/popup_images/393_0.jpg"
-    private val calendarAdapter = GroupAdapter<GroupieViewHolder>()
-        .apply {
-            add(PaymentCalendarItem(PaymentCalendar(image, 30000, "2020-05-05","2020-03-01")))
-            add(PaymentCalendarItem(PaymentCalendar(image, 30000, "2020-05-05","2020-03-01")))
-            add(PaymentCalendarItem(PaymentCalendar(image, 30000, "2020-05-05","2020-03-01")))
-            add(PaymentCalendarItem(PaymentCalendar(image, 30000, "2020-05-05","2020-03-01")))
-            add(PaymentCalendarItem(PaymentCalendar(image, 30000, "2020-05-05","2020-03-01")))
-        }
+
     private lateinit var slidr: SlidrInterface
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,14 +40,14 @@ class CalendarViewActivity : AppCompatActivity() {
 
         // Initialize data for recycler view
         calendarViewRecyclerView.layoutManager = gridLayoutManager
-        calendarViewRecyclerView.adapter = calendarAdapter
+        calendarViewRecyclerView.adapter = CalendarAdapter(12)
 
-        calendarAdapter.setOnItemClickListener { item, _ ->
-            val calendarItem = item as PaymentCalendarItem
-            val intent = Intent(this, CalendarItemDetailsActivity::class.java)
-            intent.putExtra("data", calendarItem.item)
-            startActivity(intent)
-        }
+//        calendarAdapter.setOnItemClickListener { item, _ ->
+//            val calendarItem = item as PaymentCalendarItem
+//            val intent = Intent(this, CalendarItemDetailsActivity::class.java)
+//            intent.putExtra("data", calendarItem.item)
+//            startActivity(intent)
+//        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

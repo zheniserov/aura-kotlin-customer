@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aura.R
-import com.example.aura.adapterItems.HistoryPaymentItem
 import com.aura.auracustomer.models.HistoryPayment
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -28,11 +27,11 @@ class PaymentsHistoryFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    val paymentsHistoryAdapter = GroupAdapter<GroupieViewHolder>()
-        .apply {
-            add(HistoryPaymentItem(HistoryPayment("freger", 30000, "Дата: 2020-11-04", "Статус: Принят")))
-            add(HistoryPaymentItem(HistoryPayment("gethe", 30000, "Дата: 2020-11-04", "Статус: Принят")))
-        }
+//    val paymentsHistoryAdapter = GroupAdapter<GroupieViewHolder>()
+//        .apply {
+//            add(HistoryPaymentItem(HistoryPayment("freger", 30000, "Дата: 2020-11-04", "Статус: Принят")))
+//            add(HistoryPaymentItem(HistoryPayment("gethe", 30000, "Дата: 2020-11-04", "Статус: Принят")))
+//        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,8 +52,8 @@ class PaymentsHistoryFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        payments_history_recycler_view.layoutManager = LinearLayoutManager(this.context)
-        payments_history_recycler_view.adapter = paymentsHistoryAdapter
+//        payments_history_recycler_view.layoutManager = LinearLayoutManager(this.context)
+//        payments_history_recycler_view.adapter = paymentsHistoryAdapter
     }
 
     companion object {

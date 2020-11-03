@@ -45,7 +45,7 @@ class MessageFragment : Fragment(), IMessageView {
         super.onActivityCreated(savedInstanceState)
         (activity as MainActivity).supportActionBar?.title = "Сообщения"
 
-        messagePresenter = MessagePresenter(this)
+        messagePresenter = MessagePresenter(this, this.requireContext())
         messagePresenter.getAll(Constants.CUSTOMER_ID)
     }
 
@@ -66,7 +66,7 @@ class MessageFragment : Fragment(), IMessageView {
         message_progress_bar.visibility = View.GONE
     }
 
-    override fun onError(message: String) {
-        TODO("Not yet implemented")
+    override fun onError(error: Any) {
+        message_progress_bar.visibility = View.GONE
     }
 }

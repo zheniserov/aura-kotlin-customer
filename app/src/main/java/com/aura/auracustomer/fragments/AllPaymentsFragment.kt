@@ -9,24 +9,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aura.R
 import com.aura.auracustomer.activities.CalendarViewActivity
-import com.example.aura.adapterItems.AllPaymentsItem
-import com.aura.auracustomer.models.Payment
-import com.aura.auracustomer.presenters.IPaymentsPresenter
-import com.aura.auracustomer.presenters.PaymentsPresenter
-import com.aura.auracustomer.views.IPaymentsView
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
+import com.aura.auracustomer.adapters.PaymentsAdapter
+import com.aura.auracustomer.models.PaymentSchedule
 import kotlinx.android.synthetic.main.fragment_all_payments.*
 
 private const val ARG_PARAM1 = "payments"
 
 class AllPaymentsFragment : Fragment() {
-    private var payments: ArrayList<Payment>? = null
+    private var paymentSchedules: ArrayList<PaymentSchedule>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            payments = it.getSerializable(ARG_PARAM1) as ArrayList<Payment>
+            paymentSchedules = it.getSerializable(ARG_PARAM1) as ArrayList<PaymentSchedule>
         }
     }
 
@@ -41,8 +36,8 @@ class AllPaymentsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-//        all_payments_recycler_view.layoutManager = LinearLayoutManager(this.requireContext())
-//        all_payments_recycler_view.adapter =
+        all_payments_recycler_view.layoutManager = LinearLayoutManager(this.requireContext())
+        all_payments_recycler_view.adapter = PaymentsAdapter(paymentSchedules!!)
 
         calendar_view.setOnClickListener {
             val intent = Intent(this.context, CalendarViewActivity::class.java)
@@ -52,10 +47,10 @@ class AllPaymentsFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(payments: ArrayList<Payment>) =
+        fun newInstance(paymentSchedules: ArrayList<PaymentSchedule>) =
             AllPaymentsFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(ARG_PARAM1, payments)
+                    putSerializable(ARG_PARAM1, paymentSchedules)
                 }
             }
     }

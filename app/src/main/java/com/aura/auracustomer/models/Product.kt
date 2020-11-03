@@ -18,5 +18,11 @@ data class Product (
     val name: String,
     val matnrName: String,
     val lastServiceDate: String,
-    val paymentScheduleNum: Int
+    val paymentScheduleNum: Int,
+    val staffFio: String,
+    val staffBirthday: String,
+    val staffPhone: String,
+    val staffSacked: Int,
+    val awkey: Long,
+    val bukrs: String
 ) : Serializable

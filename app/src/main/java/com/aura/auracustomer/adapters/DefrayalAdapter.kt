@@ -1,9 +1,11 @@
 package com.aura.auracustomer.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.aura.auracustomer.activities.ConfirmPayActivity
 import com.aura.auracustomer.models.Defrayal
 import com.example.aura.R
 import com.squareup.picasso.Picasso
@@ -29,4 +31,11 @@ class DefrayalAdapter(private val defrayals: ArrayList<Defrayal>) : RecyclerView
     override fun getItemCount(): Int = defrayals.size
 }
 
-class DefrayalViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+class DefrayalViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    init {
+        view.defrayal_card_pay_btn.setOnClickListener {
+            val intent = Intent(view.context, ConfirmPayActivity::class.java)
+            view.context.startActivity(intent)
+        }
+    }
+}

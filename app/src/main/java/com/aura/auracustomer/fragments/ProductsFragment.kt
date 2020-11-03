@@ -15,6 +15,7 @@ import com.aura.auracustomer.presenters.ProductsPresenter
 import com.aura.auracustomer.utils.Constants
 import com.aura.auracustomer.views.IProductsView
 import kotlinx.android.synthetic.main.fragment_products.*
+import kotlinx.android.synthetic.main.fragment_services.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,7 +54,7 @@ class ProductsFragment : Fragment(), IProductsView {
         super.onActivityCreated(savedInstanceState)
         (activity as MainActivity).supportActionBar?.title = "Товары"
 
-        productsPresenter = ProductsPresenter(this)
+        productsPresenter = ProductsPresenter(this, this.requireContext())
         productsPresenter.getAll(Constants.CUSTOMER_ID)
     }
 
@@ -73,4 +74,9 @@ class ProductsFragment : Fragment(), IProductsView {
         products_recycler_view.adapter = ProductAdapter(products)
         products_progress_bar.visibility = View.GONE
     }
+
+    override fun onError(error: Any) {
+        products_progress_bar.visibility = View.GONE
+    }
+
 }

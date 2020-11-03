@@ -7,7 +7,7 @@ import retrofit2.http.POST
 
 
 interface AuthorizationActivityApi {
-    @POST("movie/popular?")
+    @POST("/movie/popular?")
     fun signIn(
         @Field("phoneNumber") phoneNumber: String,
         @Field("sn") sn: Int

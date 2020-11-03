@@ -14,7 +14,7 @@
         android:background="@drawable/white_box">
 
         <TextView
-            android:id="@+id/payment_schedule_payed"
+            android:id="@+id/payment_schedule_paid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

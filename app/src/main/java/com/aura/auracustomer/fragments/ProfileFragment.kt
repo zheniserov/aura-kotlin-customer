@@ -12,8 +12,8 @@ import com.aura.auracustomer.presenters.CustomerPresenter
 import com.aura.auracustomer.presenters.ICustomerPresenter
 import com.aura.auracustomer.utils.Constants
 import com.aura.auracustomer.views.ICustomerView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.product_card.*
 
 class ProfileFragment : Fragment(), ICustomerView {
     private lateinit var customerPresenter: ICustomerPresenter
@@ -30,7 +30,7 @@ class ProfileFragment : Fragment(), ICustomerView {
         super.onActivityCreated(savedInstanceState)
         (activity as MainActivity).supportActionBar?.title = null
 
-        customerPresenter = CustomerPresenter(this)
+        customerPresenter = CustomerPresenter(this, this.requireContext())
         customer_data.visibility = View.INVISIBLE
         customerPresenter.getData(Constants.CUSTOMER_ID)
     }
@@ -38,19 +38,30 @@ class ProfileFragment : Fragment(), ICustomerView {
     override fun onSuccess(data: Customer) {
         customer_data.visibility = View.VISIBLE
         profile_progress_bar.visibility = View.INVISIBLE
-        profile_subtitle.text = "ULA, MNE NUJEN COUNTRY NAME"
+        profile_subtitle.text = data.countryName
         if (data.fizYur == 1) {
-            product_title.text = data.name
+            profile_title.text = data.name
             profile_textView3.text = "Бухгалтер"
             profile_textView4.text = "Директор"
             textView19.text = data.accountant
             textView20.text = data.director
         } else {
-//            product_title.text = data.firstname + data.middlename + data.lastname
+            profile_title.text = data.customerFio
             profile_textView3.text = "ИИН/БИН"
             profile_textView4.text = "Дата рождения"
             textView19.text = data.iinBin
             textView20.text = data.birthday
         }
+        profile_passport_number.text = "Номер паспорта: ${data.passportId}"
+        profile_date_of_issue.text = "Дата выдачи: ${data.passportGivenDate}"
+        profile_issued.text = "Выдан: ${data.passportGivenBy}"
+        Picasso.get()
+            .load(R.drawable.dicaprio)
+            .into(profile_user_image)
+        profile_mobile.text = "Мобильный телефон: ${data.mobile}"
+        profile_home.text = "Домашний телефон: ${data.telephone}"
+        profile_address_city.text = "Город: ${data.address}"
+        profile_address_reg.text = "Местожительство: ${data.addressReg}"
+        profile_address_work.text = "Место работы: ${data.addressWork}"
     }
 }

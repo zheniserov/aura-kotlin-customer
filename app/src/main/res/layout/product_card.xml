@@ -40,27 +40,24 @@
             android:id="@+id/payment_till_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_marginEnd="44dp"
             android:layout_marginRight="44dp"
-            android:layout_marginBottom="16dp"
             android:text="До:"
             android:textColor="#000000"
-            app:layout_constraintBottom_toTopOf="@+id/product_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/payment"
             app:layout_constraintEnd_toStartOf="@+id/payment_till"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintTop_toTopOf="@+id/payment" />
 
         <TextView
             android:id="@+id/purchase_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:text="01.01.2020"
             android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/textView8" />
 
         <TextView
             android:id="@+id/textView8"
@@ -90,15 +87,13 @@
             android:id="@+id/payment_till"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
             android:text="01.01.2020"
             android:textColor="#000000"
-            app:layout_constraintBottom_toTopOf="@+id/product_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/payment"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintTop_toTopOf="@+id/payment" />
 
         <TextView
             android:id="@+id/payment_text"
@@ -106,9 +101,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Платеж:"
+            android:text="След. платеж:"
             android:textColor="#000000"
             app:layout_constraintBottom_toTopOf="@+id/product_btn"
             app:layout_constraintStart_toStartOf="parent"
@@ -120,13 +115,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="16dp"
             android:text="30 000 KZT"
             android:textColor="#000000"
-            app:layout_constraintBottom_toTopOf="@+id/product_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/payment_text"
             app:layout_constraintStart_toEndOf="@+id/payment_text"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintTop_toTopOf="@+id/payment_text" />
 
         <TextView
             android:id="@+id/payed"
@@ -149,13 +142,15 @@
         <TextView
             android:id="@+id/product_title"
             android:layout_width="0dp"
-            android:layout_height="17dp"
-            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:gravity="center"
             android:text="Roboclean S-Plus"
             android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView8"
             app:layout_constraintTop_toTopOf="parent" />
@@ -168,12 +163,10 @@
             android:gravity="center"
             android:text="Оплатить"
             android:textAllCaps="true"
-            android:textColor="@color/colorPrimary"
-            app:backgroundTint="@color/colorBg"
             app:icon="@drawable/ic_outline_payment_24"
             app:iconGravity="textStart"
             app:iconPadding="10dp"
-            app:iconTint="@color/colorPrimary"
+            style="?attr/materialButtonOutlinedStyle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/payment_till"
             app:layout_constraintStart_toStartOf="@+id/payment_text" />

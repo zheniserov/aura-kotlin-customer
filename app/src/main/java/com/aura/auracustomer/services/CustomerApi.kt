@@ -7,6 +7,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface CustomerApi {
-    @GET("customer/{id}")
+    @GET("/customer/{id}")
     fun getCustomerData(@Path("id") id: Long): Call<ResponseHelper<Customer>>
 }

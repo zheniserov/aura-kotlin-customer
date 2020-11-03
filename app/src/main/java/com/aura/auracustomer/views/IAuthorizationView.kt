@@ -1,6 +1,5 @@
 package com.aura.auracustomer.views
 
-interface IAuthorizationView {
+interface IAuthorizationView : BaseView {
     fun onSuccess()
-    fun onError(message: String)
 }

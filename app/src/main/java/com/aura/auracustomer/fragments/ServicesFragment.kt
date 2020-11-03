@@ -45,7 +45,7 @@ class ServicesFragment : Fragment(), IServicesView {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (activity as MainActivity).supportActionBar?.title = "Услуги"
-        servicePresenter = ServicesPresenter(this)
+        servicePresenter = ServicesPresenter(this, this.requireContext())
         servicePresenter.getAll(Constants.CUSTOMER_ID)
     }
 
@@ -67,7 +67,7 @@ class ServicesFragment : Fragment(), IServicesView {
         services_progress_bar.visibility = View.GONE
     }
 
-    override fun onError(message: String) {
-        println("Error: $message, Services")
+    override fun onError(error: Any) {
+        services_progress_bar.visibility = View.GONE
     }
 }

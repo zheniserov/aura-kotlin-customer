@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.aura.R
 import com.aura.auracustomer.activities.MainActivity
-import com.aura.auracustomer.models.Payment
+import com.aura.auracustomer.models.PaymentSchedule
 import com.aura.auracustomer.presenters.IPaymentsPresenter
 import com.aura.auracustomer.presenters.PaymentsPresenter
+import com.aura.auracustomer.utils.Constants
 import com.aura.auracustomer.utils.TabLayoutFragmentAdapter
 import com.aura.auracustomer.views.IPaymentsView
 import kotlinx.android.synthetic.main.fragment_payments.*
@@ -51,18 +52,18 @@ class PaymentsFragment : Fragment(), IPaymentsView {
         super.onActivityCreated(savedInstanceState)
         (activity as MainActivity).supportActionBar?.title = "Платежи"
 
-
-        paymentsPresenter = PaymentsPresenter(this)
+        paymentsPresenter = PaymentsPresenter(this, this.requireContext())
+        paymentsPresenter.getAll(Constants.CUSTOMER_ID)
     }
 
-    override fun onSuccessPayments(payments: ArrayList<Payment>) {
+    override fun onSuccessPayments(paymentSchedules: ArrayList<PaymentSchedule>) {
         val titles = ArrayList<String>()
         val fragments = ArrayList<Fragment>()
 
         titles.add("Все платежи")
         titles.add("История")
 
-//        fragments.add(AllPaymentsFragment.newInstance())
+        fragments.add(AllPaymentsFragment.newInstance(paymentSchedules))
         fragments.add(PaymentsHistoryFragment())
 
         val fragmentAdapter = TabLayoutFragmentAdapter(childFragmentManager, fragments, titles)

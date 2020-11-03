@@ -3,7 +3,6 @@ package com.aura.auracustomer.activities
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -46,17 +45,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigation_view.setNavigationItemSelectedListener(this)
         navigation_view.setCheckedItem(R.id.nav_home)
         setFragment(HomeFragment())
+        // -----------------------
 
-    }
-
-    override fun onResume() {
-        super.onResume()
-        println("awiduhawio")
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        println("aoi0wdnioawnida")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

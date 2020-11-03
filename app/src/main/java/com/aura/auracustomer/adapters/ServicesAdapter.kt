@@ -21,9 +21,9 @@ class ServicesAdapter(private val services: ArrayList<Service>) : RecyclerView.A
     override fun onBindViewHolder(holder: ServicesViewHolder, position: Int) {
         val image = "https://www.rain-del-queen.co.za/images/homePage/roboclean.png"
         val service: Service = services[position]
-        holder.view.date_of_service_card.text = service.dateOpen
-        holder.view.description_of_service_card.text = service.description
-        holder.view.amount_of_service_card.text = service.paymentDue.toString() + " " + service.waers
+        holder.view.date_of_service_card.text = "Дата услуги: ${service.dateOpen}"
+        holder.view.description_of_service_card.text = "Примечание: ${service.description}"
+        holder.view.amount_of_service_card.text = "Сумма: ${service.paymentDue.toString() + " " + service.waers}"
         holder.view.arrears_of_serivce_card.text = "Задолженность: ${service.paid.toString()}"
         holder.view.service_card_pay_btn.visibility = if (service.paid != 0.0) View.VISIBLE else View.INVISIBLE
         holder.serviceId = service.id

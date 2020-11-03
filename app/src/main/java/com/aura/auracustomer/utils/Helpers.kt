@@ -1,11 +1,23 @@
 package com.aura.auracustomer.utils
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
+import android.net.ConnectivityManager
 import android.os.Build
 import android.util.DisplayMetrics
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.Toast
 import androidx.preference.PreferenceManager
+import com.aura.auracustomer.models.Error
+import com.example.aura.R
+import com.google.gson.Gson
+import kotlinx.android.synthetic.main.error_dialog.*
+import kotlinx.android.synthetic.main.error_dialog.view.*
+import okhttp3.ResponseBody
+import java.io.IOException
 import java.util.*
 
 
@@ -47,5 +59,46 @@ object Helpers {
         val preference = PreferenceManager.getDefaultSharedPreferences(context).edit()
         preference.putString("token", token)
         preference.apply()
+    }
+
+    fun verifyAvailableNetwork(context: Context): Boolean {
+        val connectivityManager= context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo!=null && networkInfo.isConnected
+    }
+
+    fun exceptionHandler(exception: Any, context: Context) {
+        var builder = AlertDialog.Builder(context)
+        var dialogView = LayoutInflater.from(context).inflate(R.layout.error_dialog, null)
+        builder.setView(dialogView)
+        builder.setCancelable(false)
+        var dialog = builder.create()
+        dialog.show()
+
+        when (exception) {
+            is Throwable -> {
+                if (!verifyAvailableNetwork(context)) {
+                    dialogView.error_title.text = "Интернет-соединение не подключен"
+                    dialogView.sub_error.visibility = View.GONE
+                } else {
+                    dialogView.error_title.text = exception.message
+                    dialogView.sub_error.visibility = View.GONE
+                }
+            }
+            is ResponseBody -> {
+                val res = Gson().fromJson(exception.charStream(), Error::class.java)
+                dialog.error_title.text = res.error
+                dialog.sub_error.text = res.message
+            }
+            is String -> {
+                dialog.error_title.text = exception
+                dialogView.sub_error.visibility = View.GONE
+            }
+            else -> Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+        }
+
+        dialogView.error_close.setOnClickListener {
+            dialog.dismiss()
+        }
     }
 }

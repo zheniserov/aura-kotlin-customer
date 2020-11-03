@@ -2,11 +2,11 @@ package com.aura.auracustomer.models
 
 
 data class Feedback (
-    val id: Int,
+    val id: Long,
     val image: String,
-    val customer: Customer,
     val feedbackText: String,
     val feedbackDate: String,
-    val parentId: Long,
-    val Staff: Staff
+    val parentId: Long? = null,
+    val customerFio: String,
+    val staffFio: String
 )

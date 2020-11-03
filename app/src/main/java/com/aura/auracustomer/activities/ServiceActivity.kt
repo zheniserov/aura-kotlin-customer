@@ -1,5 +1,6 @@
 package com.aura.auracustomer.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -34,7 +35,7 @@ class ServiceActivity : AppCompatActivity(), IServicesView {
 
         slidr = Slidr.attach(this)
 
-        servicePresenter = ServicesPresenter(this)
+        servicePresenter = ServicesPresenter(this, applicationContext)
 
         val serviceId = intent.getLongExtra("serviceId", 0)
         servicePresenter.getService(serviceId)
@@ -50,15 +51,20 @@ class ServiceActivity : AppCompatActivity(), IServicesView {
         hideProgressBar(true)
         service_title.text = service.matnrName
         service_date_open.text = service.dateOpen
-        service_payment_due.text = "Сумма: ${service.paymentDue}"
+        service_payment_due.text = "Сумма: ${service.paymentDue} ${service.waers}"
         service_description.text = "Примечание: ${service.description}"
-        service_paid.text = "Задолженность: ${service.paid.toString()}"
+        service_paid.text = "Задолженность: ${service.paid.toString()} ${service.waers}"
 //        service_filter_replacement.text = service.
 //        service_sale_of_spare_parts.text = service.
 //        service_service_package.text = service.
-        service_master_name.text = "ULA, MASTER NAME NOT FOUND"
+        service_master_name.text = "ФИО: ${service.masterFio}"
         service_master_phone_number.text = "Мобильный телефон: ${service.masterPhone}"
         service_sacked.text = if (service.sacked == 0) "Статус: Работает" else "Статус: Уволен"
+        service_payment_schedule_btn.setOnClickListener {
+            val intent = Intent(applicationContext, PaymentScheduleActivity::class.java)
+            intent.putExtra("service", service)
+            startActivity(intent)
+        }
     }
 
     private fun hideProgressBar(visibility: Boolean) {

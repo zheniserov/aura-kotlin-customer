@@ -28,19 +28,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/payment_schedule_payed"
+            android:id="@+id/payment_schedule_paid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:text="TextView"
             android:textColor="@color/colorBlack"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/payment_title" />
+            app:layout_constraintStart_toStartOf="@+id/payment_service_description"
+            app:layout_constraintTop_toBottomOf="@+id/payment_service_description" />
 
         <TextView
-            android:id="@+id/payment_text2"
+            android:id="@+id/payment_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -56,20 +54,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:text="Оплатить"
             android:textColor="@color/colorPrimary"
+            app:backgroundTint="@color/colorBg"
             app:icon="@drawable/ic_outline_payment_24"
             app:iconGravity="textStart"
             app:iconPadding="10dp"
             app:iconTint="@color/colorPrimary"
-            app:backgroundTint="@color/colorBg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/payment_text2"
+            app:layout_constraintTop_toBottomOf="@+id/payment_date"
             app:layout_constraintVertical_bias="0.941" />
+
+        <TextView
+            android:id="@+id/payment_service_description"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="@+id/payment_title"
+            app:layout_constraintTop_toBottomOf="@+id/payment_title"
+            tools:visibility="gone" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

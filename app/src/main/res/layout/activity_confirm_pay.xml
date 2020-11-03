@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context="com.aura.auracustomer.activities.ConfirmPayActivity">
 
     <include
@@ -34,24 +35,22 @@
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="156dp"
-            android:layout_marginLeft="156dp"
             android:layout_marginTop="40dp"
             android:text="Вы оплачиваете : "
             android:textColor="#FFFFFF"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/purchase_date"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/purchase_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="50dp"
             android:layout_marginTop="40dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:text="30 000 ₸"
             android:textColor="#FFFFFF"
-            app:layout_constraintStart_toEndOf="@+id/textView8"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -66,7 +65,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@drawable/button_filled"
-        android:text="Оплатит"
+        android:text="Оплатить"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

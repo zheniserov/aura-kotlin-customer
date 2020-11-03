@@ -22,6 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:textColor="@color/colorBlack"
         app:layout_constraintEnd_toEndOf="@+id/fragment_product_paymentschedule_btn"
         app:layout_constraintStart_toStartOf="@+id/fragment_product_paymentschedule_btn"
@@ -153,11 +155,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="16dp"
-            android:text="Платеж:"
+            android:layout_marginTop="8dp"
+            android:text="След. платеж:"
             android:textColor="@color/colorBlack"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -167,17 +167,15 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="50dp"
             android:layout_marginRight="50dp"
-            android:layout_marginBottom="16dp"
             android:text="До:"
             android:textColor="@color/colorBlack"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_product_paymentTill" />
+            app:layout_constraintEnd_toStartOf="@+id/fragment_product_paymentTill"
+            app:layout_constraintTop_toTopOf="@+id/fragment_product_payment" />
 
         <TextView
             android:id="@+id/fragment_product_paymentTill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
@@ -185,7 +183,7 @@
             android:textColor="@color/colorBlack"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_product_serviceDate" />
+            app:layout_constraintTop_toTopOf="@+id/textView17" />
 
         <TextView
             android:id="@+id/fragment_product_payment"
@@ -193,13 +191,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="16dp"
             android:text="30 000 KZT"
             android:textColor="@color/colorBlack"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView15"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+            app:layout_constraintTop_toTopOf="@+id/textView15" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.button.MaterialButton

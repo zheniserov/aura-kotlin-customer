@@ -36,7 +36,7 @@ class ProductDetailsActivity : AppCompatActivity(), IProductsView {
             WindowManager.LayoutParams.FLAG_SECURE
         )
 
-        productsPresenter = ProductsPresenter(this)
+        productsPresenter = ProductsPresenter(this, applicationContext)
         productsPresenter.getProduct(contractId)
     }
 
@@ -50,7 +50,7 @@ class ProductDetailsActivity : AppCompatActivity(), IProductsView {
 
         fragments.add(ProductFragment.newInstance(product))
         fragments.add(RecommendationFragment())
-        fragments.add(SellerFragment())
+        fragments.add(SellerFragment.newInstance(product))
 
         val fragmentAdapter = TabLayoutFragmentAdapter(supportFragmentManager, fragments, titles)
         product_details_viewPager.adapter = fragmentAdapter

@@ -1,9 +1,9 @@
 package com.aura.auracustomer.views
 
-import com.aura.auracustomer.models.Payment
+import com.aura.auracustomer.models.PaymentSchedule
 
-interface IPaymentsView {
-    fun onSuccessPayments(payments: ArrayList<Payment>) {}
-    fun onError(message: String) {}
-    fun onSuccessPayment(payment: Payment) {}
+interface IPaymentsView : BaseView {
+    fun onSuccessPayments(paymentSchedules: ArrayList<PaymentSchedule>) {}
+    fun onSuccessPayment(paymentSchedule: PaymentSchedule) {}
+    fun onSuccessPaymentsSchedule(paymentSchedules: ArrayList<PaymentSchedule>) {}
 }

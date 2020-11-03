@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.aura">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -33,7 +34,16 @@
         <activity
             android:name="com.aura.auracustomer.activities.AuthorizationActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.aura.auracustomer.activities.ConfirmPayActivity" />
+
+        <activity android:name="com.aura.auracustomer.activities.ConfirmPayActivity"
+                  android:parentActivityName="com.aura.auracustomer.activities.MainActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme.SlidrActivityTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.aura.auracustomer.activities.MainActivity" />
+        </activity>
+
         <activity
             android:name="com.aura.auracustomer.activities.CalendarItemDetailsActivity"
             android:parentActivityName="com.aura.auracustomer.activities.CalendarViewActivity"

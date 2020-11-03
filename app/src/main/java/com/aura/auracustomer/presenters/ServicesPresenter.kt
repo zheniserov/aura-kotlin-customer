@@ -1,9 +1,12 @@
 package com.aura.auracustomer.presenters
 
+import android.content.Context
 import com.aura.auracustomer.models.ResponseHelper
 import com.aura.auracustomer.models.Service
 import com.aura.auracustomer.services.ServiceBuilder
 import com.aura.auracustomer.services.ServicesApi
+import com.aura.auracustomer.utils.Helpers
+import com.aura.auracustomer.utils.Helpers.exceptionHandler
 import com.aura.auracustomer.views.IServicesView
 import retrofit2.Call
 import retrofit2.Callback
@@ -14,37 +17,45 @@ interface IServicesPresenter {
     fun getService(serviceId: Long)
 }
 
-class ServicesPresenter(val iServicesView: IServicesView): IServicesPresenter {
+class ServicesPresenter(val iServicesView: IServicesView, val context: Context): IServicesPresenter {
 
     private val apiService = ServiceBuilder.buildService(ServicesApi::class.java)
 
     override fun getAll(customerId: Long) {
-        val callSignIn = apiService.getAllServices(customerId)
+        val callServices = apiService.getAllServices(customerId)
 
-        callSignIn.enqueue(object : Callback<ResponseHelper<ArrayList<Service>>> {
+        callServices.enqueue(object : Callback<ResponseHelper<ArrayList<Service>>> {
             override fun onFailure(call: Call<ResponseHelper<ArrayList<Service>>>, t: Throwable) {
-                iServicesView.onError(t.message.toString())
+                exceptionHandler(t, context)
+                iServicesView.onError(t.message!!)
             }
 
             override fun onResponse(call: Call<ResponseHelper<ArrayList<Service>>>, response: Response<ResponseHelper<ArrayList<Service>>>) {
                 if (response.isSuccessful && response.body()!!.success) {
                     iServicesView.onSuccessServices(response.body()!!.data)
+                } else {
+                    exceptionHandler(response.errorBody()!!, context)
+                    iServicesView.onError(response.errorBody()!!)
                 }
             }
         })
     }
 
     override fun getService(serviceId: Long) {
-        val callSignIn = apiService.getService(serviceId)
+        val callService = apiService.getService(serviceId)
 
-        callSignIn.enqueue(object : Callback<ResponseHelper<Service>> {
+        callService.enqueue(object : Callback<ResponseHelper<Service>> {
             override fun onFailure(call: Call<ResponseHelper<Service>>, t: Throwable) {
-                iServicesView.onError(t.message.toString())
+                exceptionHandler(t, context)
+                iServicesView.onError(t.message!!)
             }
 
             override fun onResponse(call: Call<ResponseHelper<Service>>, response: Response<ResponseHelper<Service>>) {
                 if (response.isSuccessful && response.body()!!.success) {
                     iServicesView.onSuccessService(response.body()!!.data)
+                } else {
+                    exceptionHandler(response.errorBody()!!, context)
+                    iServicesView.onError(response.errorBody()!!)
                 }
             }
         })
