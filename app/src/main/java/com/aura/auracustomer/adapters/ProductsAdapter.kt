@@ -24,6 +24,8 @@ class ProductAdapter(private val products: ArrayList<Product>) : RecyclerView.Ad
         holder.view.purchase_date.text = product.contractDate
         holder.view.service_date.text = product.lastServiceDate
         holder.view.purchase_date.text = product.contractDate
+        holder.view.payment_till.text = product.nextPaymentDate
+        holder.view.product_payment_amount.text = product.paymentAmount.toString()
         holder.view.payment.text = product.price.toString()
         val image = "https://www.rain-del-queen.co.za/images/homePage/roboclean.png"
         Picasso.get()
@@ -31,7 +33,7 @@ class ProductAdapter(private val products: ArrayList<Product>) : RecyclerView.Ad
             .into(holder.view.product_image)
         if(product.paid == 1){
             holder.view.payment.visibility = View.GONE
-            holder.view.payment_text.visibility = View.GONE
+            holder.view.product_payment_amount.visibility = View.GONE
             holder.view.payment_till.visibility = View.GONE
             holder.view.payment_till_text.visibility = View.GONE
             holder.view.product_btn.visibility = View.GONE

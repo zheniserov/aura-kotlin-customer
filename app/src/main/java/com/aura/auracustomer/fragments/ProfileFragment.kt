@@ -64,4 +64,8 @@ class ProfileFragment : Fragment(), ICustomerView {
         profile_address_reg.text = "Местожительство: ${data.addressReg}"
         profile_address_work.text = "Место работы: ${data.addressWork}"
     }
+
+    override fun onError(error: Any) {
+        profile_progress_bar.visibility = View.INVISIBLE
+    }
 }

@@ -24,5 +24,7 @@ data class Product (
     val staffPhone: String,
     val staffSacked: Int,
     val awkey: Long,
-    val bukrs: String
+    val bukrs: String,
+    val nextPaymentDate: String,
+    val paymentAmount: Double
 ) : Serializable
