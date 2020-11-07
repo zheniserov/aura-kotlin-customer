@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aura.auracustomer.models.Message
+import com.aura.auracustomer.utils.Helpers.dateFormatter
 import com.example.aura.R
 import kotlinx.android.synthetic.main.message_card.view.*
 
@@ -17,9 +18,12 @@ class MessagesAdapter(private val messages: ArrayList<Message>) : RecyclerView.A
 
     override fun onBindViewHolder(holder: MessagesViewHolder, position: Int) {
         val message: Message = messages[position]
+        if (message.read == 0) {
+            holder.view.message_read.visibility = View.GONE
+        }
         holder.view.message_card_message.text = message.message
-        holder.view.message_card_date.text = message.date
-        holder.view.message_card_btn.text = if (message.messageType <= 2) "Оплатить" else "Подтвердить"
+        holder.view.message_card_date.text = dateFormatter(message.date)
+//        holder.view.message_card_btn.text = if (message.messageType <= 2) "Оплатить" else "Подтвердить"
     }
 
     override fun getItemCount(): Int = messages.size

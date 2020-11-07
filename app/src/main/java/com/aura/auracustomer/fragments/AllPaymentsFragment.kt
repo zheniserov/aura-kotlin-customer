@@ -40,7 +40,7 @@ class AllPaymentsFragment : Fragment() {
         all_payments_recycler_view.adapter = PaymentsAdapter(paymentSchedules!!)
 
         calendar_view.setOnClickListener {
-            val intent = Intent(this.context, CalendarViewActivity::class.java)
+            val intent = Intent(context, CalendarViewActivity::class.java)
             startActivity(intent)
         }
     }

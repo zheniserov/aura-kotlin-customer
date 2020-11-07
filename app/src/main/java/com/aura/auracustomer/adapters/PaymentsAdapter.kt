@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aura.auracustomer.models.PaymentSchedule
+import com.aura.auracustomer.utils.Helpers.dateFormatter
+import com.aura.auracustomer.utils.Helpers.decimalFormatter
 import com.example.aura.R
 import kotlinx.android.synthetic.main.payment_card.view.*
 
@@ -26,8 +28,8 @@ class PaymentsAdapter(private val paymentSchedules: ArrayList<PaymentSchedule>) 
             holder.view.payment_service_description.visibility = View.VISIBLE
             holder.view.payment_service_description.text = "Примечание: ${paymentSchedule.serviceDescription}"
         }
-        holder.view.payment_date.text = "До: ${paymentSchedule.paymentDate}"
-        holder.view.payment_schedule_paid.text = "След. платеж: ${(paymentSchedule.sum2 - paymentSchedule.paid)}"
+        holder.view.payment_date.text = dateFormatter(paymentSchedule.paymentDate)
+        holder.view.payment_schedule_paid.text = decimalFormatter(paymentSchedule.sum2 - paymentSchedule.paid)+paymentSchedule.waers
     }
 
     override fun getItemCount(): Int = paymentSchedules.size

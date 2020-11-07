@@ -2,7 +2,7 @@ package com.aura.auracustomer.models
 
 data class Bonus (
     val id: Long,
-    val amount: Long,
+    val amount: Double,
     val operationDate: String,
     val drcrk: String,
     val description: String,

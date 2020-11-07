@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aura.auracustomer.models.Feedback
+import com.aura.auracustomer.utils.Helpers.dateFormatter
 import com.example.aura.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.comment_row.view.*
@@ -25,7 +26,7 @@ class FeedbackAdapter(private val feedbacks: ArrayList<Feedback>) : RecyclerView
         if (feedback.parentId == 0.toLong() || feedback.parentId == null) {
             holder.view.comment_user_title.text = feedback.customerFio
             holder.view.comment_text.text = feedback.feedbackText
-            holder.view.comment_date.text = feedback.feedbackDate
+            holder.view.comment_date.text = dateFormatter(feedback.feedbackDate)
             val image = "https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg"
             Picasso.get()
                 .load(image)
@@ -60,7 +61,7 @@ class FeedbackEmployeeAdapter(private val feedbacks: ArrayList<Feedback>) : Recy
         val feedback: Feedback = feedbacks[position]
         holder.view.sub_comment_user_title.text = feedback.customerFio
         holder.view.sub_comment_text.text = feedback.feedbackText
-        holder.view.sub_comment_date.text = feedback.feedbackDate
+        holder.view.sub_comment_date.text = dateFormatter(feedback.feedbackDate)
         val image = "https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg"
         Picasso.get()
             .load(image)

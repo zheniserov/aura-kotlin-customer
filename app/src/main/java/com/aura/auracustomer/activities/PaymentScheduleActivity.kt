@@ -14,6 +14,7 @@ import com.aura.auracustomer.models.Product
 import com.aura.auracustomer.models.Service
 import com.aura.auracustomer.presenters.IPaymentsPresenter
 import com.aura.auracustomer.presenters.PaymentsPresenter
+import com.aura.auracustomer.utils.Helpers.decimalFormatter
 import com.aura.auracustomer.views.IPaymentsView
 import com.r0adkll.slidr.Slidr
 import com.r0adkll.slidr.model.SlidrInterface
@@ -51,13 +52,11 @@ class PaymentScheduleActivity : AppCompatActivity(), IPaymentsView {
 
     private fun hideProgressBar(visibility: Boolean) {
         if (visibility) {
-            payment_schedule_card.visibility = View.VISIBLE
-            payment_schedule_pay_btn.visibility = View.VISIBLE
+//            payment_schedule_pay_btn.visibility = View.VISIBLE
             payment_schedule_recycler_view.visibility = View.VISIBLE
             payment_schedule_progress_bar.visibility = View.INVISIBLE
         } else {
-            payment_schedule_card.visibility = View.INVISIBLE
-            payment_schedule_pay_btn.visibility = View.INVISIBLE
+//            payment_schedule_pay_btn.visibility = View.INVISIBLE
             payment_schedule_recycler_view.visibility = View.INVISIBLE
             payment_schedule_progress_bar.visibility = View.VISIBLE
         }
@@ -81,20 +80,21 @@ class PaymentScheduleActivity : AppCompatActivity(), IPaymentsView {
     private fun initData(product: Product?, service: Service?) {
         val image = "https://www.rain-del-queen.co.za/images/homePage/roboclean.png"
         if (product != null) {
+            println(product)
             paymentsPresenter.getPaymentsSchedule(product.awkey, product.bukrs)
             payment_schedule_title.text = product.matnrName
-            payment_schedule_paid.text = product.paid.toString()
-            payment_schedule_remainder.text = (product.price - product.paid).toString()
+            payment_schedule_paid.text = "Оплачено: ${decimalFormatter(product.paid)}"
+            payment_schedule_remainder.text = "Остаток: ${decimalFormatter(product.price - product.paid)}"
             payment_schedule_description.visibility = View.GONE
             Picasso.get()
                 .load(image)
                 .into(payment_schedule_image)
         } else if (service != null) {
             payment_schedule_image.visibility = View.INVISIBLE
-            payment_schedule_title.text = "Услуга"
-            payment_schedule_paid.text = "Оплачено: ${service.paid}"
-            payment_schedule_remainder.text = "Остаток: ${(service.paymentDue - service.paid!!)}"
             paymentsPresenter.getPaymentsSchedule(service.awkey, service.bukrs)
+            payment_schedule_title.text = "Услуга"
+            payment_schedule_paid.text = "Оплачено: ${decimalFormatter(service.paid)}"
+            payment_schedule_remainder.text = "Остаток: ${decimalFormatter(service.paymentDue - service.paid!!)}"
             payment_schedule_description.text = "Примечание: ${service.description}"
         }
     }

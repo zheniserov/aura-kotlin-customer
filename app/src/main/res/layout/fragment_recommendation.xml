@@ -69,11 +69,10 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:gravity="center"
-        app:icon="@drawable/ic_outline_send_24"
         app:iconGravity="textStart"
         app:iconPadding="10dp"
         style="?attr/materialButtonOutlinedStyle"
-        android:text="Отправить"
+        android:text="Одобрить"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_recommendation_number_input" />

@@ -38,42 +38,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/service_pay_btn"-->
+<!--                style="?attr/materialButtonOutlinedStyle"-->
+<!--                android:layout_width="200dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:text="Оплатить"-->
+<!--                app:icon="@drawable/ic_outline_payment_24"-->
+<!--                app:iconGravity="textStart"-->
+<!--                app:iconPadding="10dp"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/service_paid"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/service_paid" />-->
+
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/service_pay_btn"
+                android:id="@+id/service_payment_schedule_btn"
                 style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="200dp"
+                android:layout_width="255dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Оплатить"
-                app:icon="@drawable/ic_outline_payment_24"
+                android:layout_marginTop="16dp"
+                android:text="График платежей"
+                app:icon="@drawable/ic_outline_date_range_24"
                 app:iconGravity="textStart"
                 app:iconPadding="10dp"
                 app:layout_constraintStart_toStartOf="@+id/service_paid"
                 app:layout_constraintTop_toBottomOf="@+id/service_paid" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/service_payment_schedule_btn"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:text="График платежей"
-                app:icon="@drawable/ic_outline_date_range_24"
-                app:iconGravity="textStart"
-                app:iconPadding="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/service_payment_due"
-                app:layout_constraintTop_toBottomOf="@+id/service_payment_due" />
-
             <ImageView
                 android:id="@+id/service_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_launcher_background" />
@@ -108,14 +105,14 @@
                 android:id="@+id/service_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:text="Примечание: awidnaowidnawdawndiawondi"
                 android:textColor="@color/colorBlack"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/service_image"
-                app:layout_constraintTop_toBottomOf="@+id/service_image" />
+                app:layout_constraintTop_toBottomOf="@+id/view9" />
 
             <TextView
                 android:id="@+id/service_payment_due"
@@ -137,144 +134,97 @@
                 app:layout_constraintStart_toStartOf="@+id/service_description"
                 app:layout_constraintTop_toBottomOf="@+id/service_description" />
 
-            <TextView
-                android:id="@+id/service_filter_replacement_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Замена фильтра"
-                android:textColor="@color/colorBlack"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/service_pay_btn"
-                app:layout_constraintTop_toBottomOf="@+id/textView23" />
-
-            <TextView
-                android:id="@+id/service_sale_of_spare_parts_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Продажа запчастей"
-                android:textColor="@color/colorBlack"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/service_filter_replacement"
-                app:layout_constraintTop_toBottomOf="@+id/service_filter_replacement" />
-
-            <TextView
-                android:id="@+id/service_service_package_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Сервис пакет"
-                android:textColor="@color/colorBlack"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/service_sale_of_spare_parts"
-                app:layout_constraintTop_toBottomOf="@+id/service_sale_of_spare_parts" />
-
-            <TextView
-                android:id="@+id/service_filter_replacement"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="микронный"
-                android:textColor="@color/colorBlack"
-                app:layout_constraintStart_toStartOf="@+id/service_filter_replacement_label"
-                app:layout_constraintTop_toBottomOf="@+id/service_filter_replacement_label" />
-
-            <TextView
-                android:id="@+id/service_sale_of_spare_parts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Хепа фильтр"
-                android:textColor="@color/colorBlack"
-                app:layout_constraintStart_toStartOf="@+id/service_sale_of_spare_parts_label"
-                app:layout_constraintTop_toBottomOf="@+id/service_sale_of_spare_parts_label" />
-
-            <TextView
-                android:id="@+id/service_service_package"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Блок"
-                android:textColor="@color/colorBlack"
-                app:layout_constraintStart_toStartOf="@+id/service_service_package_label"
-                app:layout_constraintTop_toBottomOf="@+id/service_service_package_label" />
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/service_data_of_master"
                 android:layout_width="0dp"
-                android:layout_height="160dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
                 android:background="@drawable/white_box"
                 android:elevation="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/service_service_package"
+                app:layout_constraintEnd_toEndOf="@+id/view12"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/view11"
                 app:layout_constraintTop_toBottomOf="@+id/textView24">
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="104dp"
-                    android:layout_height="99dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/dicaprio" />
 
                 <TextView
                     android:id="@+id/service_master_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
                     android:text="Мастер: Леонардо Дикаприо"
                     android:textColor="@color/colorBlack"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView5"
-                    app:layout_constraintTop_toTopOf="@+id/imageView5" />
+                    app:layout_constraintStart_toEndOf="@+id/textView7"
+                    app:layout_constraintTop_toTopOf="@+id/textView7" />
 
                 <TextView
                     android:id="@+id/service_master_phone_number"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
                     android:text="Мобильный телефон: 877700"
                     android:textColor="@color/colorBlack"
-                    app:layout_constraintEnd_toEndOf="@+id/service_master_name"
-                    app:layout_constraintStart_toStartOf="@+id/service_master_name"
-                    app:layout_constraintTop_toBottomOf="@+id/service_master_name" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView15"
+                    app:layout_constraintTop_toTopOf="@+id/textView15" />
 
                 <TextView
                     android:id="@+id/service_sacked"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
                     android:text="Работает/Уволен"
                     android:textColor="@color/colorBlack"
-                    app:layout_constraintEnd_toEndOf="@+id/service_master_phone_number"
-                    app:layout_constraintStart_toStartOf="@+id/service_master_phone_number"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView17"
+                    app:layout_constraintTop_toTopOf="@+id/textView17" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="ФИО:"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Мобильный телефон:"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/textView7"
+                    app:layout_constraintTop_toBottomOf="@+id/service_master_name" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Статус:"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/service_master_phone_number" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Установка"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/view10"
-                app:layout_constraintStart_toEndOf="@+id/view9"
-                app:layout_constraintTop_toBottomOf="@+id/service_pay_btn" />
 
             <TextView
                 android:id="@+id/textView24"
@@ -287,25 +237,32 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/view12"
                 app:layout_constraintStart_toEndOf="@+id/view11"
-                app:layout_constraintTop_toBottomOf="@+id/service_service_package" />
-
-            <View
-                android:id="@+id/view9"
-                android:layout_width="100dp"
-                android:layout_height="1dp"
-                android:background="@drawable/gray_line"
-                app:layout_constraintBottom_toBottomOf="@+id/textView23"
-                app:layout_constraintStart_toStartOf="@+id/service_pay_btn"
-                app:layout_constraintTop_toTopOf="@+id/textView23" />
+                app:layout_constraintTop_toBottomOf="@+id/service_payment_schedule_btn" />
 
             <View
                 android:id="@+id/view11"
                 android:layout_width="100dp"
                 android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:background="@drawable/gray_line"
                 app:layout_constraintBottom_toBottomOf="@+id/textView24"
-                app:layout_constraintStart_toStartOf="@+id/service_service_package"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView24" />
+
+            <View
+                android:id="@+id/view9"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/gray_line"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/service_image" />
 
             <View
                 android:id="@+id/view12"
@@ -318,16 +275,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView24" />
 
-            <View
-                android:id="@+id/view10"
-                android:layout_width="100dp"
-                android:layout_height="1dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:background="@drawable/gray_line"
-                app:layout_constraintBottom_toBottomOf="@+id/textView23"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView23" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

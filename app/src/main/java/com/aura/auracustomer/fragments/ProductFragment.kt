@@ -10,6 +10,7 @@ import com.example.aura.R
 import com.aura.auracustomer.activities.PaymentScheduleActivity
 import com.aura.auracustomer.activities.ProductDetailsActivity
 import com.aura.auracustomer.models.Product
+import com.aura.auracustomer.utils.Helpers.dateFormatter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_product.*
 
@@ -37,15 +38,23 @@ class ProductFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         val image = "https://www.rain-del-queen.co.za/images/homePage/roboclean.png"
         fragment_product_title.text = product!!.matnrName
-        fragment_product_recommender.text = "${product!!.firstName} ${product!!.lastName} ${product!!.middleName}"
-        fragment_product_purchaseDate.text = product!!.contractDate
-        fragment_product_serviceDate.text = product!!.lastServiceDate
+        fragment_product_recommender.text = "${product!!.customerFirstName} ${product!!.customerLastName} ${product!!.customerMiddleName}"
+        fragment_product_purchaseDate.text = dateFormatter(product!!.contractDate)
+        fragment_product_serviceDate.text = dateFormatter(product!!.lastServiceDate)
         fragment_product_payment.text = product!!.price.toString()
-        fragment_product_paymentTill.text = "DENIODNEION"
+        fragment_product_paymentTill.text = product!!.nextPaymentDate
+
+        if((product!!.price - product!!.paid) == 0.toDouble()){
+            payment_amount_label.visibility = View.INVISIBLE
+            fragment_product_payment.visibility = View.INVISIBLE
+            next_payment_date_label.visibility = View.INVISIBLE
+            fragment_product_paymentTill.visibility = View.INVISIBLE
+        }
 
         fragment_product_paymentschedule_btn.setOnClickListener {
-            val goToPaymentScheduleActivity = Intent(this.requireContext(), PaymentScheduleActivity::class.java)
-            startActivity(goToPaymentScheduleActivity)
+            val intent = Intent(this.requireContext(), PaymentScheduleActivity::class.java)
+            intent.putExtra("product", product)
+            startActivity(intent)
         }
 
         Picasso.get()

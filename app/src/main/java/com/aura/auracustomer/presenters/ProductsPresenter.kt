@@ -50,6 +50,7 @@ class ProductsPresenter(val iProductsView: IProductsView, val context: Context):
             ) {
                 if (response.isSuccessful && response.body()!!.success) {
                     iProductsView.onSuccessProduct(response.body()!!.data)
+                    println(response.body()!!.data)
                 } else {
                     exceptionHandler(response.errorBody()!!, context)
                     iProductsView.onError(response.errorBody()!!)

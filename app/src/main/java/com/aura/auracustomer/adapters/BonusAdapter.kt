@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aura.auracustomer.models.Bonus
+import com.aura.auracustomer.utils.Helpers.dateFormatter
+import com.aura.auracustomer.utils.Helpers.decimalFormatter
 import com.example.aura.R
 import kotlinx.android.synthetic.main.bonus_card.view.*
 
@@ -19,8 +21,8 @@ class BonusAdapter(private val bonuses: ArrayList<Bonus>) : RecyclerView.Adapter
         val bonus: Bonus = bonuses[position]
         val characterForAmount = if (bonus.drcrk == "H") "-" else "+"
         holder.view.bonuses_title.text = bonus.maBonusTypeName
-        holder.view.bonuses_amount.text = "Сумма: $characterForAmount${bonus.amount} ${bonus.waers}"
-        holder.view.bonuses_date.text = bonus.operationDate
+        holder.view.bonuses_amount.text = "Сумма: $characterForAmount${decimalFormatter(bonus.amount)} ${bonus.waers}"
+        holder.view.bonuses_date.text = dateFormatter(bonus.operationDate)
         if (bonus.confirmedByCustomer == 0) {
             holder.view.bonus_btn.visibility = View.VISIBLE
         }

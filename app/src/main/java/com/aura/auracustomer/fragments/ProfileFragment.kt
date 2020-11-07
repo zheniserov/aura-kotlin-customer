@@ -11,6 +11,7 @@ import com.aura.auracustomer.models.Customer
 import com.aura.auracustomer.presenters.CustomerPresenter
 import com.aura.auracustomer.presenters.ICustomerPresenter
 import com.aura.auracustomer.utils.Constants
+import com.aura.auracustomer.utils.Helpers.dateFormatter
 import com.aura.auracustomer.views.ICustomerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -36,6 +37,7 @@ class ProfileFragment : Fragment(), ICustomerView {
     }
 
     override fun onSuccess(data: Customer) {
+        println(data)
         customer_data.visibility = View.VISIBLE
         profile_progress_bar.visibility = View.INVISIBLE
         profile_subtitle.text = data.countryName
@@ -50,19 +52,19 @@ class ProfileFragment : Fragment(), ICustomerView {
             profile_textView3.text = "ИИН/БИН"
             profile_textView4.text = "Дата рождения"
             textView19.text = data.iinBin
-            textView20.text = data.birthday
+            textView20.text = dateFormatter(data.birthday!!)
         }
-        profile_passport_number.text = "Номер паспорта: ${data.passportId}"
-        profile_date_of_issue.text = "Дата выдачи: ${data.passportGivenDate}"
-        profile_issued.text = "Выдан: ${data.passportGivenBy}"
+        profile_passport_number.text = "Номер паспорта: ${data.passportId ?: ""}"
+        profile_date_of_issue.text = "Дата выдачи: ${dateFormatter(data.passportGivenDate!!)}"
+        profile_issued.text = "Выдан: ${data.passportGivenBy ?: ""}"
         Picasso.get()
             .load(R.drawable.dicaprio)
             .into(profile_user_image)
-        profile_mobile.text = "Мобильный телефон: ${data.mobile}"
-        profile_home.text = "Домашний телефон: ${data.telephone}"
-        profile_address_city.text = "Город: ${data.address}"
-        profile_address_reg.text = "Местожительство: ${data.addressReg}"
-        profile_address_work.text = "Место работы: ${data.addressWork}"
+        profile_mobile.text = "Мобильный телефон: ${data.mobile ?: ""}"
+        profile_home.text = "Домашний телефон: ${data.telephone ?: ""}"
+        profile_address_city.text = "Город: ${data.address ?: ""}"
+        profile_address_reg.text = "Местожительство: ${data.addressReg ?: ""}"
+        profile_address_work.text = "Место работы: ${data.addressWork ?: ""}"
     }
 
     override fun onError(error: Any) {

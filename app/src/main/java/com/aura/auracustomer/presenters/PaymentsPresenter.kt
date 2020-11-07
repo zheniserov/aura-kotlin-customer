@@ -25,7 +25,7 @@ class PaymentsPresenter(val iPaymentsView: IPaymentsView, val context: Context):
         callPayments.enqueue(object : Callback<ResponseHelper<ArrayList<PaymentSchedule>>> {
             override fun onFailure(call: Call<ResponseHelper<ArrayList<PaymentSchedule>>>, t: Throwable) {
                 exceptionHandler(t, context)
-                iPaymentsView.onError(t.message!!)
+                t.message?.let { iPaymentsView.onError(it) }
             }
 
             override fun onResponse(call: Call<ResponseHelper<ArrayList<PaymentSchedule>>>, response: Response<ResponseHelper<ArrayList<PaymentSchedule>>>) {

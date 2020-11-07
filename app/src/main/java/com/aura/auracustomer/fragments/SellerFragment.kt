@@ -1,13 +1,16 @@
 package com.aura.auracustomer.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.telephony.PhoneNumberUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.aura.auracustomer.models.Product
+import com.aura.auracustomer.utils.Helpers.dateFormatter
 import com.example.aura.R
 import kotlinx.android.synthetic.main.fragment_seller.*
+
 
 private const val ARG_PARAM1 = "product"
 
@@ -31,9 +34,9 @@ class SellerFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        fragment_seller_name.text = product!!.staffFio
+        fragment_seller_name.text = product!!.staffFirstName+" "+product!!.staffMiddleName+" "+product!!.staffLastName
         fragment_seller_number.text = product!!.staffPhone
-        seller_birthday.text = product!!.staffBirthday
+        seller_birthday.text = dateFormatter(product!!.staffBirthday)
         fragment_seller_status.text = if (product!!.staffSacked == 0) "Работает" else "Уволен"
     }
 

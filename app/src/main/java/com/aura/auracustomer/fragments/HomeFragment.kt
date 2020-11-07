@@ -1,21 +1,29 @@
 package com.aura.auracustomer.fragments
 
+import android.graphics.Typeface
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.TextView
+import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.aura.R
 import com.aura.auracustomer.activities.MainActivity
-import com.example.aura.adapterItems.HomeProductItem
-import com.example.aura.adapterItems.SliderItem
 import com.aura.auracustomer.models.HomeProduct
 import com.aura.auracustomer.models.Slider
+import com.aura.auracustomer.presenters.HomePresenter
+import com.aura.auracustomer.presenters.IHomePresenter
+import com.aura.auracustomer.utils.Constants
+import com.aura.auracustomer.views.IHomeView
+import com.example.aura.R
+import com.example.aura.adapterItems.HomeProductItem
+import com.example.aura.adapterItems.SliderItem
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
@@ -32,10 +40,13 @@ private const val ARG_PARAM2 = "param2"
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), IHomeView {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private lateinit var homePresenter: IHomePresenter
+    private lateinit var messageText: TextView
 
     private val image = "https://i.ytimg.com/vi/0t9shY1PpRs/maxresdefault.jpg"
     private val sliderAdapter = GroupAdapter<GroupieViewHolder>()
@@ -103,10 +114,22 @@ class HomeFragment : Fragment() {
         onClickListener(MessageFragment(), messages_btn, R.id.nav_message)
         onClickListener(BonusesFragment(), bonuses_btn, R.id.nav_bonuses)
         onClickListener(SettingsFragment(), settings_btn, R.id.nav_settings)
-        onClickListener(DefrayalFragment(), defrayal_btn, R.id.nav_defrayal)
+//        onClickListener(DefrayalFragment(), defrayal_btn, R.id.nav_defrayal)
         onClickListener(ServicesFragment(), service_btn, R.id.nav_services)
 
+        homePresenter = HomePresenter(this, this.requireContext())
+        homePresenter.getUnreadMessagesCount(Constants.CUSTOMER_ID)
 
+        messageText = MenuItemCompat.getActionView(
+            (activity as MainActivity).navigation_view.menu.findItem(R.id.nav_message)
+        ) as TextView
+    }
+
+    private fun initializeCountDrawer(count: Int) {
+        messageText.gravity = Gravity.CENTER_VERTICAL
+        messageText.setTypeface(null, Typeface.BOLD)
+        messageText.setTextColor(resources.getColor(R.color.colorAccent))
+        messageText.text = "$count"
     }
 
     private fun onClickListener(fragment: Fragment, btn: ImageButton, id: Int) {
@@ -141,5 +164,14 @@ class HomeFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onSuccessUnreadMessagesCount(count: Int) {
+        if (count != 0) {
+            unread_messages_count.text = "$count"
+            initializeCountDrawer(count)
+        } else {
+            unread_messages_count.setBackgroundResource(0)
+        }
     }
 }

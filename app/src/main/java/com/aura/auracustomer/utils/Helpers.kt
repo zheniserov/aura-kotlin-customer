@@ -17,7 +17,10 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.error_dialog.*
 import kotlinx.android.synthetic.main.error_dialog.view.*
 import okhttp3.ResponseBody
-import java.io.IOException
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -29,6 +32,32 @@ object Helpers {
             ""
         ).toString()
         setLocale(lang, context)
+    }
+    fun decimalFormatter(number: Double?): String? {
+        if (number == null) {
+            return ""
+        }
+        // Get current locale information
+        val currentLocale = Locale.getDefault()
+
+        // Currency Formatter specific to locale
+        val currencyFormatter: NumberFormat = NumberFormat.getCurrencyInstance(currentLocale)
+
+        // Remove the currency symbol
+        val decimalFormatSymbols: DecimalFormatSymbols =
+            (currencyFormatter as DecimalFormat).getDecimalFormatSymbols()
+        decimalFormatSymbols.currencySymbol = ""
+        currencyFormatter.decimalFormatSymbols = decimalFormatSymbols
+
+        return currencyFormatter.format(number)
+    }
+
+    fun dateFormatter(date: String): String {
+        return if (date.isNotEmpty()) {
+            val parser = SimpleDateFormat("yyyy-MM-dd")
+            val formatter = SimpleDateFormat("dd.MM.yyyy")
+             formatter.format(parser.parse(date))
+        } else { date }
     }
 
     fun setLocale(lang: String, context: Context) {

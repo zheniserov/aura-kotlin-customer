@@ -3,7 +3,9 @@ package com.aura.auracustomer.activities
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
@@ -45,7 +47,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigation_view.setNavigationItemSelectedListener(this)
         navigation_view.setCheckedItem(R.id.nav_home)
         setFragment(HomeFragment())
-        // -----------------------
 
     }
 
@@ -77,7 +78,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_bonuses -> setFragment(BonusesFragment())
             R.id.nav_comments -> setFragment(FeedbackFragment())
             R.id.nav_settings -> setFragment(SettingsFragment())
-            R.id.nav_defrayal -> setFragment(DefrayalFragment())
+//            R.id.nav_defrayal -> setFragment(DefrayalFragment())
             R.id.nav_services -> setFragment(ServicesFragment())
             R.id.nav_sign_out -> launchAlertDialogSignOut()
         }

@@ -1,12 +1,12 @@
 package com.aura.auracustomer.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.aura.R
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.aura.auracustomer.activities.MainActivity
 import com.aura.auracustomer.adapters.MessagesAdapter
 import com.aura.auracustomer.models.Message
@@ -14,7 +14,9 @@ import com.aura.auracustomer.presenters.IMessagePresenter
 import com.aura.auracustomer.presenters.MessagePresenter
 import com.aura.auracustomer.utils.Constants
 import com.aura.auracustomer.views.IMessageView
+import com.example.aura.R
 import kotlinx.android.synthetic.main.fragment_message.*
+
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -47,6 +49,10 @@ class MessageFragment : Fragment(), IMessageView {
 
         messagePresenter = MessagePresenter(this, this.requireContext())
         messagePresenter.getAll(Constants.CUSTOMER_ID)
+
+        message_swipe_refresh.setOnRefreshListener(OnRefreshListener {
+            messagePresenter.getAll(Constants.CUSTOMER_ID)
+        })
     }
 
     companion object {
@@ -64,6 +70,7 @@ class MessageFragment : Fragment(), IMessageView {
         messages_recycler_view.layoutManager = LinearLayoutManager(this.requireContext())
         messages_recycler_view.adapter = MessagesAdapter(messages)
         message_progress_bar.visibility = View.GONE
+        message_swipe_refresh.isRefreshing = false
     }
 
     override fun onError(error: Any) {

@@ -13,6 +13,7 @@ import com.aura.auracustomer.models.Bonus
 import com.aura.auracustomer.presenters.BonusPresenter
 import com.aura.auracustomer.presenters.IBonusPresenter
 import com.aura.auracustomer.utils.Constants
+import com.aura.auracustomer.utils.Helpers.decimalFormatter
 import com.aura.auracustomer.views.IBonusView
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -42,7 +43,7 @@ class BonusesFragment : Fragment(), IBonusView {
         bonuses_recycler_view.layoutManager = LinearLayoutManager(this.context)
         bonuses_recycler_view.adapter = BonusAdapter(bonuses)
         val confirmedBonuses = bonuses.filter { it.confirmedByCustomer == 1 }
-        var total: Long = 0
+        var total = 0.0
         confirmedBonuses.forEach {
             if (it.drcrk == "H") {
                 total -= it.amount
@@ -50,7 +51,7 @@ class BonusesFragment : Fragment(), IBonusView {
                 total += it.amount
             }
         }
-        bonust_total.text = total.toString() + " KZT"
+        bonust_total.text = decimalFormatter(total) + " KZT"
         hideProgressBar(true)
     }
 

@@ -109,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="8dp"
-                    android:text="Оплата"
+                    android:text="Скоро..."
                     android:textColor="#000000" />
             </LinearLayout>
 
@@ -175,7 +175,7 @@
                     android:textColor="#000000" />
             </LinearLayout>
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_messages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -197,7 +197,24 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/menu_button_border"
-                    android:src="@drawable/ic_outline_email_24" />
+                    android:src="@drawable/ic_outline_email_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/unread_messages_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/badge"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="10sp"
+                    android:textColor="@color/colorWhite"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/messagesTextView"
@@ -205,8 +222,13 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="8dp"
                     android:text="Сообщения"
-                    android:textColor="#000000" />
-            </LinearLayout>
+                    android:textColor="#000000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/messages_btn" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:id="@+id/layout_bonuses"

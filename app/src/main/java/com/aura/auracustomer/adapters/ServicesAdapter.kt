@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aura.auracustomer.activities.ServiceActivity
 import com.aura.auracustomer.models.Service
+import com.aura.auracustomer.utils.Helpers.decimalFormatter
+import com.aura.auracustomer.utils.Helpers.dateFormatter
 import com.example.aura.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.service_card.view.*
@@ -21,11 +23,12 @@ class ServicesAdapter(private val services: ArrayList<Service>) : RecyclerView.A
     override fun onBindViewHolder(holder: ServicesViewHolder, position: Int) {
         val image = "https://www.rain-del-queen.co.za/images/homePage/roboclean.png"
         val service: Service = services[position]
-        holder.view.date_of_service_card.text = "Дата услуги: ${service.dateOpen}"
-        holder.view.description_of_service_card.text = "Примечание: ${service.description}"
-        holder.view.amount_of_service_card.text = "Сумма: ${service.paymentDue.toString() + " " + service.waers}"
-        holder.view.arrears_of_serivce_card.text = "Задолженность: ${service.paid.toString()}"
-        holder.view.service_card_pay_btn.visibility = if (service.paid != 0.0) View.VISIBLE else View.INVISIBLE
+        println(service.waers)
+        holder.view.date_of_service_card.text = dateFormatter(service.dateOpen)
+        holder.view.description_of_service_card.text = service.description
+        holder.view.amount_of_service_card.text = decimalFormatter(service.paymentDue) + " " + service.waers
+        holder.view.arrears_of_serivce_card.text = decimalFormatter(service.sumTotal- service.paid!!)+" "+service.waers
+//        holder.view.service_card_pay_btn.visibility = if (service.paid != 0.0) View.VISIBLE else View.INVISIBLE
         holder.serviceId = service.id
         Picasso.get()
             .load(image)

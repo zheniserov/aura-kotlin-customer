@@ -54,9 +54,11 @@ class PaymentsFragment : Fragment(), IPaymentsView {
 
         paymentsPresenter = PaymentsPresenter(this, this.requireContext())
         paymentsPresenter.getAll(Constants.CUSTOMER_ID)
+        payments_progress_bar.visibility = View.VISIBLE
     }
 
     override fun onSuccessPayments(paymentSchedules: ArrayList<PaymentSchedule>) {
+        payments_progress_bar.visibility = View.GONE
         val titles = ArrayList<String>()
         val fragments = ArrayList<Fragment>()
 
@@ -69,6 +71,10 @@ class PaymentsFragment : Fragment(), IPaymentsView {
         val fragmentAdapter = TabLayoutFragmentAdapter(childFragmentManager, fragments, titles)
         viewPager.adapter = fragmentAdapter
         tabLayout.setupWithViewPager(viewPager)
+    }
+
+    override fun onError(error: Any) {
+        payments_progress_bar.visibility = View.GONE
     }
 
     companion object {

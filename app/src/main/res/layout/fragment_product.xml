@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/fragment_product_image"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
@@ -22,30 +22,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textColor="@color/colorBlack"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/colorBlack"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_product_paymentschedule_btn"
-        app:layout_constraintStart_toStartOf="@+id/fragment_product_paymentschedule_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fragment_product_image"
         app:layout_constraintTop_toTopOf="@+id/fragment_product_image" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fragment_product_paymentschedule_btn"
-        android:layout_width="0dp"
+        android:layout_width="170dp"
         android:layout_height="45dp"
-        android:layout_marginStart="54dp"
-        android:layout_marginLeft="54dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
         android:text="График платежей"
+        android:textSize="9dp"
         app:icon="@drawable/ic_baseline_event_note_24"
         app:iconGravity="textStart"
         app:iconPadding="10dp"
-        android:textSize="9dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/fragment_product_image"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_product_title"
+        app:layout_constraintStart_toStartOf="@+id/fragment_product_title"
         app:layout_constraintTop_toBottomOf="@+id/fragment_product_title" />
 
     <com.google.android.material.button.MaterialButton
@@ -150,7 +145,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/payment_amount_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -162,54 +157,49 @@
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
         <TextView
-            android:id="@+id/textView17"
+            android:id="@+id/next_payment_date_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginTop="8dp"
             android:text="До:"
             android:textColor="@color/colorBlack"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_product_paymentTill"
-            app:layout_constraintTop_toTopOf="@+id/fragment_product_payment" />
+            app:layout_constraintStart_toStartOf="@+id/payment_amount_label"
+            app:layout_constraintTop_toBottomOf="@+id/payment_amount_label" />
 
         <TextView
             android:id="@+id/fragment_product_paymentTill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:text="01.02.2020"
             android:textColor="@color/colorBlack"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView17" />
+            app:layout_constraintEnd_toEndOf="@+id/fragment_product_payment"
+            app:layout_constraintTop_toTopOf="@+id/next_payment_date_label" />
 
         <TextView
             android:id="@+id/fragment_product_payment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="50dp"
             android:text="30 000 KZT"
             android:textColor="@color/colorBlack"
-            app:layout_constraintStart_toEndOf="@+id/textView15"
-            app:layout_constraintTop_toTopOf="@+id/textView15" />
+            app:layout_constraintEnd_toEndOf="@+id/fragment_product_serviceDate"
+            app:layout_constraintTop_toTopOf="@+id/payment_amount_label" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/fragment_product_paymentBtn"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="Оплатить"
-        android:textAllCaps="true"
-        app:backgroundTint="@color/colorPrimary"
-        app:icon="@drawable/ic_outline_payment_24"
-        app:iconGravity="textStart"
-        app:iconPadding="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout6"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout6"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/fragment_product_paymentBtn"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="56dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:gravity="center"-->
+<!--        android:text="Оплатить"-->
+<!--        android:textAllCaps="true"-->
+<!--        app:backgroundTint="@color/colorPrimary"-->
+<!--        app:icon="@drawable/ic_outline_payment_24"-->
+<!--        app:iconGravity="textStart"-->
+<!--        app:iconPadding="10dp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/constraintLayout6"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/constraintLayout6"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
